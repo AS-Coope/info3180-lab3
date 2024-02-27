@@ -5,8 +5,8 @@
 <hr>
 <p>Fill in this form to contact the site owners.</p>
 <form method="POST" action="">
-    {{ form.csrf.token }}
-    {{ form.name.label }}
+    {{ form.csrf_token }}
+    {{ form.name.label(class="form-label") }}
     <p>Please enter your full name</p>
     {{ form.name}}
 </form>
