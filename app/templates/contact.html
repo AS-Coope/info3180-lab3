@@ -4,7 +4,7 @@
 <h1>Contact Form</h1>
 <hr>
 <p>Fill in this form to contact the site owners.</p>
-<form method="POST" action="">
+<form method="POST" action="{{ url_for('contact') }}">
     {{ form.csrf_token }}
     <div class="form-group mb-3">
         {{ form.name.label(class="form-label") }}
