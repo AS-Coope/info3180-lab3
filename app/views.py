@@ -2,7 +2,7 @@ from app import app
 from flask import render_template, request, redirect, url_for, flash
 from .forms import ContactForm
 from flask_mail import Message
-
+from app import mail
 
 ###
 # Routing for your application.
@@ -32,8 +32,8 @@ def contact():
             message = form.message_box.data
 
             msg = Message(subject,
-                          sender = (firstname + " " + lastname, "from@example.com"),
-                          recipients=["to@example.com"])
+                          sender = (name, email),
+                          recipients=["sandbox.smtp.mailtrap.io"])
             msg.body = message
             mail.send(msg)
 
