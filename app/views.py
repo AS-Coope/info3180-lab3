@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template, request, redirect, url_for, flash
 from .forms import ContactForm
+from flask_mail import Message
 
 
 ###
@@ -21,7 +22,7 @@ def about():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
-    
+
     if request.method == 'POST':
         if form.validate_on_submit():
             # process the data
@@ -29,11 +30,15 @@ def contact():
             email = form.email.data
             subject = form.subject.data
             message = form.message_box.data
-            return render_template('contact.html',
-                                   name=name,
-                                   email=email,
-                                   subject=subject,
-                                   message=message)
+
+            msg = Message(subject,
+                          sender = (firstname + " " + lastname, "from@example.com"),
+                          recipients=["to@example.com"])
+            msg.body = message
+            mail.send(msg)
+
+            flash('The email was successfully sent')
+            return redirect(url_for('home'))
         flash_errors(form)
     return render_template('contact.html', form=form)
 ###
