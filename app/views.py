@@ -33,7 +33,7 @@ def contact():
 
             msg = Message(subject,
                           sender = (name, email),
-                          recipients=["sandbox.smtp.mailtrap.io"])
+                          recipients=["to@example.com"])
             msg.body = message
             mail.send(msg)
 
