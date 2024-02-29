@@ -21,13 +21,20 @@ def about():
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     form = ContactForm()
-    if form.validate_on_submit():
-        # process the data
-        name = form.name.data
-        email = form.email.data
-        subject = form.subject.data
-        message = form.message_box.data
-        return redirect('/success')
+    
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            # process the data
+            name = form.name.data
+            email = form.email.data
+            subject = form.subject.data
+            message = form.message_box.data
+            return render_template('contact.html',
+                                   name=name,
+                                   email=email,
+                                   subject=subject,
+                                   message=message)
+        flash_errors(form)
     return render_template('contact.html', form=form)
 ###
 # The functions below should be applicable to all Flask apps.
