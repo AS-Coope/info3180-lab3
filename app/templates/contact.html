@@ -6,8 +6,28 @@
 <p>Fill in this form to contact the site owners.</p>
 <form method="POST" action="">
     {{ form.csrf_token }}
-    {{ form.name.label(class="form-label") }}
-    <p>Please enter your full name</p>
-    {{ form.name}}
+    <div class="form-component">
+        {{ form.name.label(class="form-label") }}
+        <p>Please enter your full name</p>
+        {{ form.name }}
+    </div>
+    <div class="form-component">
+        {{ form.email.label(class="form-label") }}
+        <p>Please enter your email address</p>
+        {{ form.email }}
+    </div>
+
+    <div class="form-component">
+        {{ form.subject.label }}
+        <p>Please enter the subject for your message</p>
+        {{ form.subject }}
+    </div>
+
+    <div class="form-component">
+        {{ form.message_box.label }}
+        <p>Please enter the message you would like to send</p>
+        {{ form.message_box }}
+    </div>
+
 </form>
 {% endblock %}
